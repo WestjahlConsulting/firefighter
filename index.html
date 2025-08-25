@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Brandman & Brandsäkerhet – [Din brors namn]</title>
+  <meta name="description" content="HLR- och brandskyddsutbildningar, utrymningsövningar och säkerhetsgenomgångar. 15+ års erfarenhet som brandman. Boka utbildning för företag, föreningar och privatpersoner." />
+  <meta name="theme-color" content="#0b0b0d" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg:#0b0b0d;      /* nästan svart */
+      --card:#121215;    /* mörk grå */
+      --muted:#9aa1a9;   /* grå text */
+      --text:#eef1f5;    /* ljus text */
+      --accent:#ff3b30;  /* röd */
+      --accent-2:#ff7a18;/* orange */
+      --ok:#30d158;      /* grön */
+      --shadow: 0 10px 30px rgba(0,0,0,.35);
+      --radius: 18px;
+    }
+    *{box-sizing:border-box}
+    html,body{margin:0;background:var(--bg);color:var(--text);font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,Helvetica,sans-serif;}
+    a{color:inherit;text-decoration:none}
+    img{max-width:100%;display:block}
+    .container{max-width:1080px;margin-inline:auto;padding:0 20px}
+    /* --- Nav --- */
+    .nav{position:sticky;top:0;z-index:50;background:rgba(11,11,13,.7);backdrop-filter:saturate(140%) blur(10px);border-bottom:1px solid #1c1c22}
+    .nav-inner{display:flex;align-items:center;justify-content:space-between;padding:14px 0}
+    .brand{display:flex;align-items:center;gap:12px;font-weight:800;letter-spacing:.3px}
+    .brand .mark{width:34px;height:34px;border-radius:9px;background:conic-gradient(from 210deg at 50% 50%, var(--accent), var(--accent-2) 60%, var(--accent));display:grid;place-items:center;box-shadow:0 6px 18px rgba(255,58,48,.35)}
+    .brand .mark span{font-size:18px}
+    .nav a{opacity:.9}
+    .nav-links{display:flex;gap:20px;align-items:center}
+    .cta{display:inline-flex;align-items:center;gap:10px;background:linear-gradient(135deg,var(--accent),var(--accent-2));padding:10px 14px;border-radius:12px;color:#fff;font-weight:700;box-shadow:0 8px 20px rgba(255,58,48,.35)}
+    .menu-btn{display:none}
+    @media (max-width:820px){
+      .menu-btn{display:inline-flex;align-items:center;gap:8px;background:#1a1a20;border:1px solid #26262e;border-radius:12px;padding:9px 12px}
+      .nav-links{display:none}
+      .nav-links.open{display:flex;position:absolute;left:20px;right:20px;top:64px;background:#0f0f12;border:1px solid #1e1e25;border-radius:14px;padding:12px;flex-direction:column}
+      .nav-links a{padding:10px;border-radius:10px}
+      .nav-links a:hover{background:#17171d}
+    }
+
+    /* --- Hero --- */
+    .hero{position:relative;overflow:hidden}
+    .hero .bg{position:absolute;inset:0;background:radial-gradient(1000px 600px at 80% -10%, rgba(255,122,24,.18), transparent 60%), radial-gradient(800px 500px at -10% 30%, rgba(255,59,48,.22), transparent 60%);} 
+    .hero .wrap{position:relative;padding:90px 0 40px}
+    .eyebrow{display:inline-flex;gap:8px;align-items:center;background:#141419;border:1px solid #222229;color:var(--muted);padding:6px 10px;border-radius:999px;font-size:13px}
+    .eyebrow .dot{width:8px;height:8px;border-radius:50%;background:var(--ok);box-shadow:0 0 18px var(--ok)}
+    h1{font-size:clamp(32px,4.5vw,56px);line-height:1.05;margin:16px 0 12px;font-weight:900}
+    .lead{font-size:clamp(16px,2.1vw,20px);color:#c8ced6;max-width:720px}
+    .actions{display:flex;gap:12px;margin-top:22px;flex-wrap:wrap}
+    .btn{display:inline-flex;align-items:center;gap:10px;padding:12px 16px;border-radius:14px;font-weight:700;border:1px solid #26262e;background:#141419}
+    .btn.primary{border:none;background:linear-gradient(135deg,var(--accent),var(--accent-2));color:#fff;box-shadow:0 10px 24px rgba(255,59,48,.35)}
+    .swoosh{position:absolute;inset:auto 0 -1px 0;height:80px;background:linear-gradient(180deg,rgba(11,11,13,0),rgba(11,11,13,1))}
+
+    /* --- Cards generic --- */
+    .grid{display:grid;grid-template-columns:repeat(12,1fr);gap:18px}
+    .card{grid-column:span 4;background:var(--card);border:1px solid #1d1d24;border-radius:var(--radius);padding:18px;box-shadow:var(--shadow)}
+    .card:hover{transform:translateY(-2px)}
+    @media (max-width:980px){.card{grid-column:span 6}}
+    @media (max-width:620px){.card{grid-column:span 12}}
+    .kicker{font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:#b3b8be}
+    .h3{font-size:22px;font-weight:800;margin:6px 0 6px}
+    .muted{color:var(--muted)}
+
+    /* --- Services --- */
+    section{padding:56px 0}
+    .section-title{display:flex;align-items:center;justify-content:space-between;gap:18px;margin-bottom:18px}
+    .section-title h2{font-size:clamp(22px,3.2vw,34px);margin:0}
+    .section-title p{margin:0;color:#bfc5cc}
+    .service-icon{width:42px;height:42px;border-radius:12px;background:#18181f;border:1px solid #272733;display:grid;place-items:center;font-size:20px}
+
+    /* --- Credentials --- */
+    .pill{display:inline-flex;gap:10px;align-items:center;border:1px solid #272733;background:#141419;padding:8px 12px;border-radius:999px}
+    .stack{display:flex;flex-wrap:wrap;gap:10px;margin-top:10px}
+
+    /* --- Pricing --- */
+    .price{font-weight:900;font-size:32px}
+    .price small{font-weight:600;font-size:14px;color:#bfc5cc}
+
+    /* --- Contact --- */
+    .contact{display:grid;grid-template-columns: 1.1fr .9fr;gap:20px}
+    @media (max-width:880px){.contact{grid-template-columns:1fr}}
+    form{background:var(--card);border:1px solid #1d1d24;border-radius:var(--radius);padding:18px;box-shadow:var(--shadow)}
+    label{display:block;font-weight:600;margin:10px 0 6px}
+    input, textarea{width:100%;background:#0f0f12;border:1px solid #23232b;color:#fff;border-radius:12px;padding:12px}
+    textarea{min-height:120px;resize:vertical}
+    .help{font-size:12px;color:#98a1a9}
+    .success{display:none;margin-top:10px;background:#0f2e17;border:1px solid #1c5b30;color:#d7ffd7;padding:10px;border-radius:10px}
+
+    /* --- Footer --- */
+    footer{padding:30px 0;border-top:1px solid #1c1c22;color:#9aa1a9}
+    .foot{display:flex;gap:12px;justify-content:space-between;align-items:center;flex-wrap:wrap}
+
+    /* --- Utility --- */
+    .row{display:flex;gap:12px;flex-wrap:wrap}
+    .badge{display:inline-flex;align-items:center;gap:8px;padding:6px 10px;border-radius:999px;background:#121218;border:1px solid #23232a;color:#cbd1d8}
+    .sep{height:1px;background:#1c1c22;margin:26px 0}
+    .ghost{opacity:.6}
+  </style>
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"LocalBusiness",
+    "name":"[Din brors namn] – Brandman & Brandsäkerhet",
+    "image":"",
+    "description":"HLR- och brandskyddsutbildningar, utrymningsövningar och säkerhetsgenomgångar ledda av brandman med 15+ års erfarenhet.",
+    "areaServed":"Sverige",
+    "url":"",
+    "email":"",
+    "telephone":"",
+    "sameAs":[]
+  }
+  </script>
+</head>
+<body>
+  <!-- NAV -->
+  <nav class="nav">
+    <div class="container nav-inner">
+      <a class="brand" href="#top" aria-label="Startsida">
+        <span class="mark" aria-hidden="true"><span>🔥</span></span>
+        <span>Brandman & Brandsäkerhet</span>
+      </a>
+      <div class="row">
+        <button class="menu-btn" id="menuBtn" aria-expanded="false" aria-controls="menu">Meny ▾</button>
+        <div id="menu" class="nav-links">
+          <a href="#tjanster">Tjänster</a>
+          <a href="#om">Om</a>
+          <a href="#priser">Paket</a>
+          <a href="#kontakt" class="cta">Boka utbildning</a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <header id="top" class="hero">
+    <div class="bg" aria-hidden="true"></div>
+    <div class="container wrap">
+      <span class="eyebrow"><span class="dot"></span> Lediga tider denna månad – boka nu</span>
+      <h1>Modern HLR & brandsäkerhet – ledd av erfaren brandman</h1>
+      <p class="lead">Jag heter <strong>[Din brors namn]</strong> och har arbetat som brandman i över 15 år, med utbildning inom sjöräddning, HLR och brandskydd. Jag hjälper företag, föreningar och privatpersoner att bli trygga och handlingskraftiga när det verkligen gäller.</p>
+      <div class="actions">
+        <a class="btn primary" href="#kontakt">Boka utbildning</a>
+        <a class="btn" href="#tjanster">Se alla tjänster</a>
+      </div>
+    </div>
+    <div class="swoosh" aria-hidden="true"></div>
+  </header>
+
+  <!-- TRUST / BADGES -->
+  <section>
+    <div class="container">
+      <div class="row">
+        <span class="badge">🚒 15+ års operativ erfarenhet</span>
+        <span class="badge">🩺 Certifierad HLR-instruktör</span>
+        <span class="badge">🌊 Sjöräddningskompetens</span>
+        <span class="badge">🏢 Företagsanpassade upplägg</span>
+        <span class="badge">📍 På plats i hela Sverige</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- TJÄNSTER -->
+  <section id="tjanster">
+    <div class="container">
+      <div class="section-title">
+        <h2>Tjänster</h2>
+        <p class="muted">Praktiska, tydliga och anpassade utbildningar – för alla nivåer.</p>
+      </div>
+      <div class="grid">
+        <article class="card">
+          <div class="row" style="align-items:center;justify-content:space-between">
+            <div class="row" style="align-items:center"><div class="service-icon">🫀</div><div style="margin-left:10px"><div class="kicker">Utbildning</div><div class="h3">HLR vuxen + hjärtstartare</div></div></div>
+            <span class="ghost">2–3 h</span>
+          </div>
+          <p class="muted">Livräddande kunskap med fokus på kedjan som räddar liv, säkra kompressioner och praktisk träning med HLR-dockor.</p>
+        </article>
+        <article class="card">
+          <div class="row" style="align-items:center;justify-content:space-between">
+            <div class="row" style="align-items:center"><div class="service-icon">🔥</div><div style="margin-left:10px"><div class="kicker">Utbildning</div><div class="h3">Brandskydd & släckövning</div></div></div>
+            <span class="ghost">2 h</span>
+          </div>
+          <p class="muted">Grundläggande brandkunskap, rutiner och praktiska moment. Genomgång av handbrandsläckare, brandfilt och riskbedömning.</p>
+        </article>
+        <article class="card">
+          <div class="row" style="align-items:center;justify-content:space-between">
+            <div class="row" style="align-items:center"><div class="service-icon">🏃‍♀️</div><div style="margin-left:10px"><div class="kicker">Övning</div><div class="h3">Utrymningsövning & plan</div></div></div>
+            <span class="ghost">1–2 h</span>
+          </div>
+          <p class="muted">Planering, genomförande och efteranalys av utrymningsövning. Förslag på förbättringar och uppdaterad utrymningsplan.</p>
+        </article>
+        <article class="card">
+          <div class="row" style="align-items:center;justify-content:space-between">
+            <div class="row" style="align-items:center"><div class="service-icon">🧰</div><div style="margin-left:10px"><div class="kicker">Genomgång</div><div class="h3">Systematiskt brandskyddsarbete (SBA)</div></div></div>
+            <span class="ghost">Pågående</span>
+          </div>
+          <p class="muted">Stöd i SBA – rutiner, egenkontroller, ansvar och dokumentation så att lagen följs och risker minskar i vardagen.</p>
+        </article>
+        <article class="card">
+          <div class="row" style="align-items:center;justify-content:space-between">
+            <div class="row" style="align-items:center"><div class="service-icon">🧯</div><div style="margin-left:10px"><div class="kicker">Tjänst</div><div class="h3">Brandronder & riskinventering</div></div></div>
+            <span class="ghost">1–3 h</span>
+          </div>
+          <p class="muted">Rond i lokaler med åtgärdslista och prioritering. Genomgång av släckutrustning, skyltning och framkomlighet.</p>
+        </article>
+        <article class="card">
+          <div class="row" style="align-items:center;justify-content:space-between">
+            <div class="row" style="align-items:center"><div class="service-icon">🛟</div><div style="margin-left:10px"><div class="kicker">Special</div><div class="h3">Sjöräddning & vattensäkerhet</div></div></div>
+            <span class="ghost">Enligt behov</span>
+          </div>
+          <p class="muted">Säkerhet ombord och på kaj. Genomgång av livräddning i vatten, kastlina, livboj och larmkedja.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- OM MIG -->
+  <section id="om">
+    <div class="container">
+      <div class="section-title">
+        <h2>Om mig</h2>
+        <p class="muted">Erfarenhet från räddningstjänsten – för tryggare arbetsplatser.</p>
+      </div>
+      <div class="grid">
+        <article class="card" style="grid-column:span 7">
+          <div class="kicker">Bakgrund</div>
+          <div class="h3">Brandman sedan 15+ år</div>
+          <p class="muted">Jag har arbetat i operativ tjänst med allt från bränder i byggnad till trafikolyckor och vattendyk. Utöver det håller jag regelbundet utbildningar inom <strong>HLR</strong>, <strong>brandskydd</strong> och <strong>utrymning</strong>. Mitt mål är att göra säkerhet enkelt, relevant och hands-on.</p>
+          <div class="stack">
+            <span class="pill">📜 <strong>Utbildningar:</strong> HLR instruktör, Sjöräddning, Vattensäkerhet</span>
+            <span class="pill">🧑‍🏫 <strong>Pedagogik:</strong> lätt att förstå – mycket praktik</span>
+            <span class="pill">🧭 <strong>Område:</strong> Stockholm med omnejd (reser gärna)</span>
+          </div>
+        </article>
+        <aside class="card" style="grid-column:span 5">
+          <div class="kicker">Bilder</div>
+          <div class="h3">Plats för porträtt & dockor</div>
+          <p class="muted">Här kan vi lägga in 2–3 bilder på mig i tjänst, samt HLR-dockor under övning. Ladda upp bilder senare så placerar vi dem här.</p>
+          <div class="row" style="gap:10px">
+            <div style="flex:1;background:#0f0f12;border:1px dashed #2a2a33;border-radius:14px;aspect-ratio:4/3;display:grid;place-items:center">Porträtt.jpg</div>
+            <div style="flex:1;background:#0f0f12;border:1px dashed #2a2a33;border-radius:14px;aspect-ratio:4/3;display:grid;place-items:center">HLR-dockor.jpg</div>
+          </div>
+        </aside>
+      </div>
+    </div>
+  </section>
+
+  <!-- PAKET / PRISER -->
+  <section id="priser">
+    <div class="container">
+      <div class="section-title">
+        <h2>Paket & priser</h2>
+        <p class="muted">Prisexempel – offert lämnas alltid efter behov och antal deltagare.</p>
+      </div>
+      <div class="grid">
+        <article class="card">
+          <div class="kicker">Bas</div>
+          <div class="h3">HLR Vuxen</div>
+          <p class="price">fr. 6 900 kr <small>exkl. moms</small></p>
+          <p class="muted">Upp till 12 deltagare. Inkl. praktisk träning med dockor och hjärtstartare.</p>
+          <a href="#kontakt" class="btn" style="margin-top:6px">Boka</a>
+        </article>
+        <article class="card">
+          <div class="kicker">Populär</div>
+          <div class="h3">Brandskydd + Släckövning</div>
+          <p class="price">fr. 8 900 kr <small>exkl. moms</small></p>
+          <p class="muted">Brandteori, rutiner och praktiska släckmoment. Passar kontor, butik och förening.</p>
+          <a href="#kontakt" class="btn" style="margin-top:6px">Boka</a>
+        </article>
+        <article class="card">
+          <div class="kicker">Kombination</div>
+          <div class="h3">HLR + Brandskydd</div>
+          <p class="price">fr. 14 900 kr <small>exkl. moms</small></p>
+          <p class="muted">Heldag med både HLR och brandskydd. Extra tid för frågor och anpassning.</p>
+          <a href="#kontakt" class="btn" style="margin-top:6px">Boka</a>
+        </article>
+      </div>
+      <p class="muted" style="margin-top:10px">Resekostnad kan tillkomma utanför närområde. Offert skickas efter en kort behovsanalys.</p>
+    </div>
+  </section>
+
+  <!-- KONTAKT -->
+  <section id="kontakt">
+    <div class="container">
+      <div class="section-title">
+        <h2>Kontakt & bokning</h2>
+        <p class="muted">Fyll i formuläret så återkommer jag med förslag och offert.</p>
+      </div>
+      <div class="contact">
+        <form id="contactForm" novalidate>
+          <label for="name">Namn</label>
+          <input id="name" name="name" type="text" placeholder="Företag / Kontaktperson" required>
+
+          <label for="email">E‑post</label>
+          <input id="email" name="email" type="email" placeholder="namn@foretag.se" required>
+
+          <label for="phone">Telefon</label>
+          <input id="phone" name="phone" type="tel" placeholder="070‑123 45 67">
+
+          <label for="msg">Meddelande</label>
+          <textarea id="msg" name="message" placeholder="Berätta kort vad ni behöver – antal deltagare, plats, önskad vecka..."></textarea>
+
+          <div class="help">Genom att skicka godkänner du att vi lagrar dina uppgifter för att kontakta dig. Vi delar aldrig uppgifterna med tredje part.</div>
+          <div class="row" style="margin-top:12px">
+            <button class="btn primary" type="submit">Skicka förfrågan</button>
+            <a class="btn" id="mailtoBtn" href="#">Eller maila direkt</a>
+          </div>
+          <div class="success" id="successBox">Tack! Ditt meddelande är skickat. Jag återkommer så snart jag kan.</div>
+        </form>
+
+        <aside>
+          <div class="card">
+            <div class="kicker">Kontakt</div>
+            <div class="h3">[Din brors namn] – Brandman</div>
+            <p class="muted">Enskild firma • Org.nr: [XXXXXX‑XXXX]</p>
+            <div class="sep"></div>
+            <p><strong>E‑post:</strong> <a id="emailLink" href="mailto:">[e‑post@adress.se]</a><br>
+               <strong>Telefon:</strong> <a href="tel:">[070‑123 45 67]</a><br>
+               <strong>Utgår från:</strong> Stockholm</p>
+            <div class="sep"></div>
+            <p class="muted">F‑skatt • Ansvarsförsäkring • Utrustning medtas vid behov</p>
+          </div>
+          <div class="row" style="margin-top:12px">
+            <div class="badge">📅 Snabba bokningar</div>
+            <div class="badge">🧾 Offert inom 24 h</div>
+          </div>
+        </aside>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container foot">
+      <div class="row" style="align-items:center">
+        <div class="brand"><span class="mark"><span>🔥</span></span><span>Brandman & Brandsäkerhet</span></div>
+        <span class="muted">© <span id="year"></span> [Din brors namn]. Alla rättigheter förbehållna.</span>
+      </div>
+      <div class="row">
+        <a class="ghost" href="#top">Till toppen ↑</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Mobile menu toggle
+    const btn = document.getElementById('menuBtn');
+    const menu = document.getElementById('menu');
+    btn?.addEventListener('click',()=>{
+      const open = menu.classList.toggle('open');
+      btn.setAttribute('aria-expanded', open ? 'true':'false');
+    });
+
+    // Smooth anchor scroll
+    document.querySelectorAll('a[href^="#"]').forEach(a=>{
+      a.addEventListener('click', e=>{
+        const id = a.getAttribute('href');
+        if(id.length>1){
+          e.preventDefault();
+          document.querySelector(id).scrollIntoView({behavior:'smooth'});
+          menu.classList.remove('open');
+          btn.setAttribute('aria-expanded','false');
+        }
+      });
+    });
+
+    // Contact form (client-only demo)
+    const form = document.getElementById('contactForm');
+    const successBox = document.getElementById('successBox');
