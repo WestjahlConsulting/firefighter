@@ -3,7 +3,6 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-   <img src="logotype.jpg" alt="Företagslogotyp" class="logo-img" />
   <title>Hjalmarsson Fire, Fit & Health</title>
   <meta name="description" content="Utbildningar inom brandskydd, HLR och träning." />
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -16,13 +15,12 @@
       --text:#e6e8ee;
       --muted:#9aa3b2;
       --brand:#ff6b3d;
-      --accent:#28d07f;
       --ring: rgba(255,107,61,.35);
     }
     *{box-sizing:border-box}
     html,body{margin:0;padding:0;background:var(--bg);color:var(--text);font-family:Inter,system-ui,Segoe UI,Roboto,Helvetica,Arial,sans-serif}
     a{color:inherit;text-decoration:none}
-    img{max-width:100%;}
+    img{max-width:100%;display:block}
 
     /* Layout */
     header{
@@ -37,13 +35,22 @@
 
     /* HERO */
     .hero{min-height:85dvh;display:grid;place-items:center;position:relative;text-align:center;padding:60px 20px}
-    .emojis{font-size:56px;line-height:1;margin-bottom:16px}
-    .hero h1{font-size:clamp(26px,5vw,44px);margin:0 0 12px;font-weight:800;}
+    .brand-block{display:flex;flex-direction:column;align-items:center}
+    .logo-img{
+      /* Responsiv storlek: mindre på mobil, större på desktop */
+      width: clamp(120px, 26vw, 220px);
+      height:auto;
+      margin-bottom:16px;
+      /* Hålla jämna kanter o skarpt på mörk bakgrund */
+      image-rendering:auto;
+      filter: drop-shadow(0 2px 12px rgba(0,0,0,.35));
+    }
+    .hero h1{font-size:clamp(24px,5vw,44px);margin:0 0 12px;font-weight:800;}
     .hero p{margin:0 auto;color:var(--muted);max-width:720px;font-size:clamp(16px,2.2vw,18px)}
     .cta-row{margin-top:28px;display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
     .btn{
       padding:12px 18px;border-radius:14px;border:1px solid #283246;background:#182033;color:var(--text);
-      transition:.2s; font-weight:600;
+      transition:.2s; font-weight:600; cursor:pointer;
     }
     .btn:hover{transform:translateY(-1px);border-color:#344057}
     .btn.primary{background:linear-gradient(135deg,var(--brand),#ff914d);border-color:transparent}
@@ -84,184 +91,4 @@
     input:focus, textarea:focus{border-color:#3a4763; box-shadow:0 0 0 4px var(--ring)}
     textarea{min-height:140px; resize:vertical}
     .help{color:var(--muted);font-size:12px;margin-top:6px}
-    .success, .error{display:none;margin-top:12px;padding:12px;border-radius:12px;font-weight:600}
-    .success{background:rgba(40,208,127,.1);border:1px solid #2f8f6a}
-    .error{background:rgba(255,107,61,.12);border:1px solid #8f4a35}
-
-    footer{padding:32px 0;color:#8d97a8;text-align:center}
-  </style>
-</head>
-<body>
-
-  <!-- Header (ingen logga – en ren meny) -->
-  <header>
-    <div class="container">
-      <nav>
-        <a href="#top" style="font-weight:800;">Hjalmarsson FFH</a>
-        <div class="nav-links">
-          <a href="#om">Om</a>
-          <a href="#tjanster">Tjänster</a>
-          <a href="#kontakt">Kontakt & bokning</a>
-        </div>
-      </nav>
-    </div>
-  </header>
-
-  <!-- HERO -->
-  <main id="top" class="hero container">
-    <div>
-      <!-- BYT emojiraden här om du vill -->
-      <div class="emojis" aria-hidden="true">🔥 🧯 🏋️‍♂️ ❤️‍🩹</div>
-      <h1>Behöver du eller ditt företag utbildning?</h1>
-      <p>Brandskydd, HLR och fysisk träning – vi skräddarsyr utbildningar som är praktiska, engagerande och lätta att boka.</p>
-      <div class="cta-row">
-        <a class="btn primary" href="#kontakt">Boka utbildning</a>
-        <a class="btn" href="#tjanster">Se våra tjänster</a>
-      </div>
-    </div>
-
-    <button class="scroll-down" aria-label="Skrolla ner" title="Skrolla ner">⬇️</button>
-  </main>
-
-  <!-- OM -->
-  <section id="om">
-    <div class="container">
-      <h2>Om oss</h2>
-      <p class="muted">Vi hjälper företag och privatpersoner med brandsäkerhet, HLR och träningsupplägg – alltid med fokus på tydlighet och hands-on-övning.</p>
-      <div class="grid">
-        <div class="card"><h3>Praktiskt upplägg</h3><p>Vi fokuserar på verkliga scenarion och tydliga rutiner.</p></div>
-        <div class="card"><h3>Certifierade utbildare</h3><p>Erfarna instruktörer inom brand, HLR och träning.</p></div>
-        <div class="card"><h3>På plats eller online</h3><p>Vi kommer till er – eller kör digitalt efter behov.</p></div>
-      </div>
-    </div>
-  </section>
-
-  <!-- TJÄNSTER -->
-  <section id="tjanster">
-    <div class="container">
-      <h2>Tjänster</h2>
-      <p class="muted">Välj en färdig kurs eller be oss skräddarsy efter era risker, lokaler och mål.</p>
-      <div class="grid">
-        <div class="card"><h3>Brandskyddsutbildning</h3><p>Brandförlopp, utrymning, släckövning och ansvar.</p></div>
-        <div class="card"><h3>HLR & Första hjälpen</h3><p>Vuxen-HLR, hjärtstartare (AED) och akuta lägen.</p></div>
-        <div class="card"><h3>Träning & hälsa</h3><p>Workshops, PT-upplägg och skadeförebyggande.</p></div>
-      </div>
-    </div>
-  </section>
-
-  <!-- KONTAKT & BOKNING (EN enda sektion) -->
-  <section id="kontakt">
-    <div class="container">
-      <h2>Kontakt & bokning</h2>
-      <p class="muted">Fyll i formuläret så återkommer vi snarast. Du får en bekräftelse i din mejl.</p>
-
-      <!-- Formspree-formulär -->
-      <form id="fs-form" action="https://formspree.io/f/mkgvjwky" method="POST">
-        <!-- Rek. fält -->
-        <div class="row two">
-          <div>
-            <label for="name">Namn</label>
-            <input id="name" name="name" type="text" required autocomplete="name" />
-          </div>
-          <div>
-            <label for="email">E-post</label>
-            <input id="email" name="email" type="email" required autocomplete="email" />
-          </div>
-        </div>
-
-        <div class="row two" style="margin-top:12px">
-          <div>
-            <label for="company">Företag (valfritt)</label>
-            <input id="company" name="company" type="text" autocomplete="organization" />
-          </div>
-          <div>
-            <label for="phone">Telefon (valfritt)</label>
-            <input id="phone" name="phone" type="tel" autocomplete="tel" />
-          </div>
-        </div>
-
-        <div class="row" style="margin-top:12px">
-          <div>
-            <label for="message">Meddelande</label>
-            <textarea id="message" name="message" required placeholder="Vad behöver ni hjälp med?"></textarea>
-            <p class="help">Ex: önskat datum, antal deltagare, plats, typ av utbildning.</p>
-          </div>
-        </div>
-
-        <!-- Dolda hjälp-fält -->
-        <input type="hidden" name="_subject" value="Ny förfrågan via hemsidan" />
-        <!-- Honeypot mot spam -->
-        <input type="text" name="_gotcha" style="display:none" tabindex="-1" autocomplete="off" />
-
-        <div style="display:flex;gap:12px;align-items:center;justify-content:flex-start;margin-top:10px">
-          <button class="btn primary" type="submit">Skicka</button>
-          <span id="sending" class="muted" style="display:none">Skickar…</span>
-        </div>
-
-        <div id="success" class="success">Tack! Ditt meddelande är skickat. Vi hör av oss snart.</div>
-        <div id="error" class="error">Oj! Något gick fel. Testa igen eller mejla oss direkt.</div>
-      </form>
-    </div>
-  </section>
-
-  <footer>
-    <div class="container">
-      © <span id="year"></span> Hjalmarsson Fire, Fit & Health
-    </div>
-  </footer>
-
-  <script>
-    // År i footern
-    document.getElementById('year').textContent = new Date().getFullYear();
-
-    // Smooth scroll för pilar/menylänkar
-    document.querySelectorAll('a[href^="#"]').forEach(a=>{
-      a.addEventListener('click', e=>{
-        const id = a.getAttribute('href');
-        const el = document.querySelector(id);
-        if(!el) return;
-        e.preventDefault();
-        el.scrollIntoView({behavior:'smooth', block:'start'});
-        history.pushState(null, '', id);
-      });
-    });
-
-    // Hero-pil
-    document.querySelector('.scroll-down')?.addEventListener('click', ()=>{
-      document.getElementById('om')?.scrollIntoView({behavior:'smooth', block:'start'});
-    });
-
-    // Formspree – AJAX submit
-    const form = document.getElementById('fs-form');
-    const sending = document.getElementById('sending');
-    const ok = document.getElementById('success');
-    const err = document.getElementById('error');
-
-    form.addEventListener('submit', async (e)=>{
-      e.preventDefault();
-      sending.style.display='inline';
-      ok.style.display='none';
-      err.style.display='none';
-
-      const data = new FormData(form);
-      try{
-        const res = await fetch(form.action, {
-          method: 'POST',
-          body: data,
-          headers: { 'Accept': 'application/json' }
-        });
-        sending.style.display='none';
-        if(res.ok){
-          ok.style.display='block';
-          form.reset();
-        }else{
-          err.style.display='block';
-        }
-      }catch{
-        sending.style.display='none';
-        err.style.display='block';
-      }
-    });
-  </script>
-</body>
-</html>
+    .success, .error{display:none;margin-top:12p
