@@ -22,18 +22,67 @@
     a{color:inherit;text-decoration:none}
     img{max-width:100%;display:block}
 
-    /* Header */
+    /* Header / Nav */
     header{
-      position:sticky; top:0; z-index:50;
+      position:sticky; top:0; z-index:60;
       background:rgba(11,15,23,.7); backdrop-filter: blur(8px);
       border-bottom:1px solid #1c2433;
     }
     .container{max-width:1100px;margin:0 auto;padding:0 20px}
-    nav{display:flex;align-items:center;justify-content:space-between;height:64px}
-    .nav-links a{margin-left:18px;padding:8px 10px;border-radius:12px}
+
+    .topbar{display:flex;align-items:center;justify-content:space-between;height:64px}
+    .brand{font-weight:800;display:flex;align-items:center;gap:10px}
+    .brand small{font-weight:600;color:var(--muted)}
+
+    /* desktop länkar */
+    .nav-links{display:flex;gap:10px}
+    .nav-links a{padding:8px 10px;border-radius:12px}
     .nav-links a:hover{background:#1a2233}
 
-    /* Hero */
+    /* hamburger */
+    .hamburger{
+      display:none; /* visas på mobil */
+      width:42px;height:42px;border-radius:10px;
+      border:1px solid #273049;background:#151b2a;color:var(--text);
+      display:grid;place-items:center;cursor:pointer;
+    }
+    .hamburger span{display:block;width:18px;height:2px;background:currentColor;position:relative}
+    .hamburger span::before,.hamburger span::after{
+      content:"";position:absolute;left:0;width:18px;height:2px;background:currentColor;transition:transform .2s ease, top .2s;
+    }
+    .hamburger span::before{top:-6px}
+    .hamburger span::after{top:6px}
+    .hamburger[aria-expanded="true"] span{background:transparent}
+    .hamburger[aria-expanded="true"] span::before{top:0;transform:rotate(45deg)}
+    .hamburger[aria-expanded="true"] span::after{top:0;transform:rotate(-45deg)}
+
+    /* Drawer */
+    .drawer-backdrop{
+      position:fixed; inset:0; background:rgba(0,0,0,.35);
+      opacity:0; pointer-events:none; transition:opacity .2s ease; z-index:55;
+    }
+    .drawer{
+      position:fixed; top:0; right:-320px; width:280px; height:100vh;
+      background:#0f1524; border-left:1px solid #1f2740; z-index:56;
+      padding:16px; display:flex; flex-direction:column; gap:8px;
+      transition: right .25s ease;
+    }
+    .drawer a{padding:12px;border-radius:12px}
+    .drawer a:hover{background:#1a2233}
+    .drawer-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:8px}
+    .drawer-title{font-weight:800}
+
+    .drawer-open .drawer{right:0}
+    .drawer-open .drawer-backdrop{opacity:1; pointer-events:auto}
+    .no-scroll{overflow:hidden}
+
+    /* Breakpoints */
+    @media (max-width: 860px){
+      .nav-links{display:none}
+      .hamburger{display:grid}
+    }
+
+    /* HERO */
     .hero{min-height:85dvh;display:grid;place-items:center;position:relative;text-align:center;padding:60px 20px}
     .brand-block{display:flex;flex-direction:column;align-items:center}
     .logo-img{
@@ -41,7 +90,6 @@
       height:auto;
       margin-bottom:16px;
       filter: drop-shadow(0 2px 12px rgba(0,0,0,.35));
-      /* Om bilden är väldigt hög: lås maxhöjd */
       max-height: 160px;
       object-fit: contain;
     }
@@ -54,18 +102,6 @@
     }
     .btn:hover{transform:translateY(-1px);border-color:#344057}
     .btn.primary{background:linear-gradient(135deg,var(--brand),#ff914d);border-color:transparent}
-    .scroll-down{
-      position:absolute; bottom:28px; left:50%; transform:translateX(-50%);
-      font-size:28px; width:44px; height:44px; border-radius:999px; display:grid; place-items:center;
-      border:1px solid #2a3347; background:#151b2a; cursor:pointer;
-      box-shadow:0 0 0 0 var(--ring);
-      animation: pulse 2.2s infinite;
-    }
-    @keyframes pulse{
-      0%{box-shadow:0 0 0 0 var(--ring)}
-      70%{box-shadow:0 0 0 14px transparent}
-      100%{box-shadow:0 0 0 0 transparent}
-    }
 
     /* Sections */
     section{padding:72px 0;border-top:1px solid #161d2b}
@@ -103,21 +139,42 @@
   <!-- Header -->
   <header>
     <div class="container">
-      <nav>
-        <a href="#top" style="font-weight:800;">Hjalmarsson FFH</a>
-        <div class="nav-links">
+      <div class="topbar">
+        <a href="#top" class="brand">Hjalmarsson <small>FFH</small></a>
+
+        <!-- Desktop länkar -->
+        <nav class="nav-links" aria-label="Huvudmeny">
           <a href="#om">Om</a>
           <a href="#tjanster">Tjänster</a>
           <a href="#kontakt">Kontakt & bokning</a>
-        </div>
-      </nav>
+        </nav>
+
+        <!-- Hamburger (mobil) -->
+        <button class="hamburger" aria-controls="mobile-drawer" aria-expanded="false" aria-label="Öppna meny">
+          <span></span>
+        </button>
+      </div>
     </div>
+
+    <!-- Drawer + backdrop (mobil) -->
+    <div class="drawer-backdrop" data-close="drawer"></div>
+    <nav id="mobile-drawer" class="drawer" aria-label="Mobilmeny">
+      <div class="drawer-header">
+        <div class="drawer-title">Meny</div>
+        <button class="hamburger" aria-controls="mobile-drawer" aria-expanded="true" aria-label="Stäng meny">
+          <span></span>
+        </button>
+      </div>
+      <a href="#om" data-close="drawer">Om</a>
+      <a href="#tjanster" data-close="drawer">Tjänster</a>
+      <a href="#kontakt" data-close="drawer">Kontakt & bokning</a>
+    </nav>
   </header>
 
   <!-- HERO -->
   <main id="top" class="hero container">
     <div class="brand-block">
-      <!-- Byt filnamnet om din bild heter t.ex. Logotype.jpeg -->
+      <!-- Byt filnamn här om din bild heter Logotype.jpeg -->
       <img src="logotype.jpg" alt="Företagslogotyp" class="logo-img" />
       <h1>Behöver du eller ditt företag utbildning?</h1>
       <p>Brandskydd, HLR och fysisk träning – vi skräddarsyr utbildningar som är praktiska, engagerande och lätta att boka.</p>
@@ -126,8 +183,6 @@
         <a class="btn" href="#tjanster">Se våra tjänster</a>
       </div>
     </div>
-
-    <button class="scroll-down" aria-label="Skrolla ner" title="Skrolla ner">⬇️</button>
   </main>
 
   <!-- OM -->
@@ -229,10 +284,23 @@
       });
     });
 
-    // Hero-pil (om du vill använda knappen)
-    document.querySelector('.scroll-down')?.addEventListener('click', ()=>{
-      document.getElementById('om')?.scrollIntoView({behavior:'smooth', block:'start'});
-    });
+    // Drawer/hamburger logik
+    const body = document.body;
+    const drawer = document.getElementById('mobile-drawer');
+    const backdrop = document.querySelector('.drawer-backdrop');
+    const openers = document.querySelectorAll('.hamburger');
+    const closeables = document.querySelectorAll('[data-close="drawer"]');
+
+    function setDrawer(open){
+      body.classList.toggle('drawer-open', open);
+      body.classList.toggle('no-scroll', open);
+      openers.forEach(b=>b.setAttribute('aria-expanded', open));
+      if(open){ drawer.querySelector('a')?.focus(); }
+    }
+    openers.forEach(btn=>btn.addEventListener('click', ()=>setDrawer(!body.classList.contains('drawer-open'))));
+    backdrop.addEventListener('click', ()=>setDrawer(false));
+    closeables.forEach(el=>el.addEventListener('click', ()=>setDrawer(false)));
+    document.addEventListener('keydown', (e)=>{ if(e.key==='Escape') setDrawer(false); });
 
     // Formspree – AJAX submit
     const form = document.getElementById('fs-form');
