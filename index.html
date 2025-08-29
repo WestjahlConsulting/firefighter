@@ -1,193 +1,267 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="sv">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Patrik Hjalmarsson – Brandman, HLR & PT</title>
-  <meta name="description" content="HLR- och brandskyddsutbildningar, utrymningsövningar och personlig träning. 15+ års erfarenhet som brandman." />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;900&display=swap" rel="stylesheet">
+   <img src="logotype.jpg" alt="Företagslogotyp" class="logo-img" />
+  <title>Hjalmarsson Fire, Fit & Health</title>
+  <meta name="description" content="Utbildningar inom brandskydd, HLR och träning." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
   <style>
-    body {margin:0;font-family:Inter,sans-serif;background:#0b0b0d;color:#fff;}
-    a{text-decoration:none;color:inherit}
-    .nav {position:fixed;top:0;right:0;padding:16px;z-index:1000;}
-    .menu-btn {background:#1a1a20;color:#fff;border:none;border-radius:12px;padding:10px 14px;font-weight:600;cursor:pointer;}
+    :root{
+      --bg:#0b0f17;
+      --card:#121826;
+      --text:#e6e8ee;
+      --muted:#9aa3b2;
+      --brand:#ff6b3d;
+      --accent:#28d07f;
+      --ring: rgba(255,107,61,.35);
+    }
+    *{box-sizing:border-box}
+    html,body{margin:0;padding:0;background:var(--bg);color:var(--text);font-family:Inter,system-ui,Segoe UI,Roboto,Helvetica,Arial,sans-serif}
+    a{color:inherit;text-decoration:none}
+    img{max-width:100%;}
 
-    /* Hero section */
-    .hero {height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;position:relative;}
-    .logo {display:flex;flex-direction:column;align-items:center;}
-    .logo-icon {font-size:72px;margin-bottom:16px;}
-    .logo-text {font-size:clamp(28px,6vw,56px);font-weight:900;}
-    .scroll-down {position:absolute;bottom:30px;left:50%;transform:translateX(-50%);text-align:center;cursor:pointer;}
-    .scroll-down p {margin:0 0 8px;font-size:18px;}
-    .scroll-down .arrow {font-size:32px;animation:bounce 1.6s infinite;}
-    @keyframes bounce {0%,20%,50%,80%,100%{transform:translate(-50%,0)}40%{transform:translate(-50%,-12px)}60%{transform:translate(-50%,-6px)}}
+    /* Layout */
+    header{
+      position:sticky; top:0; z-index:50;
+      background:rgba(11,15,23,.7); backdrop-filter: blur(8px);
+      border-bottom:1px solid #1c2433;
+    }
+    .container{max-width:1100px;margin:0 auto;padding:0 20px}
+    nav{display:flex;align-items:center;justify-content:space-between;height:64px}
+    .nav-links a{margin-left:18px;padding:8px 10px;border-radius:12px}
+    .nav-links a:hover{background:#1a2233}
 
-    section {padding:60px 20px;max-width:1080px;margin:auto;}
-    h2 {font-size:clamp(22px,3.5vw,34px);margin-bottom:20px;}
-    .grid {display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:20px;}
-    .card {background:#121215;border-radius:16px;padding:20px;}
-    .card h3 {margin-top:0;font-size:22px;}
+    /* HERO */
+    .hero{min-height:85dvh;display:grid;place-items:center;position:relative;text-align:center;padding:60px 20px}
+    .emojis{font-size:56px;line-height:1;margin-bottom:16px}
+    .hero h1{font-size:clamp(26px,5vw,44px);margin:0 0 12px;font-weight:800;}
+    .hero p{margin:0 auto;color:var(--muted);max-width:720px;font-size:clamp(16px,2.2vw,18px)}
+    .cta-row{margin-top:28px;display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+    .btn{
+      padding:12px 18px;border-radius:14px;border:1px solid #283246;background:#182033;color:var(--text);
+      transition:.2s; font-weight:600;
+    }
+    .btn:hover{transform:translateY(-1px);border-color:#344057}
+    .btn.primary{background:linear-gradient(135deg,var(--brand),#ff914d);border-color:transparent}
+    .scroll-down{
+      position:absolute; bottom:28px; left:50%; transform:translateX(-50%);
+      font-size:28px; width:44px; height:44px; border-radius:999px; display:grid; place-items:center;
+      border:1px solid #2a3347; background:#151b2a; cursor:pointer;
+      box-shadow:0 0 0 0 var(--ring);
+      animation: pulse 2.2s infinite;
+    }
+    @keyframes pulse{
+      0%{box-shadow:0 0 0 0 var(--ring)}
+      70%{box-shadow:0 0 0 14px transparent}
+      100%{box-shadow:0 0 0 0 transparent}
+    }
 
-    /* Kontaktformulär */
-    form {display:flex;flex-direction:column;gap:12px;max-width:600px;margin:auto;}
-    input,textarea {padding:12px;border-radius:8px;border:none;font-family:inherit;}
-    button[type=submit]{background:#ff3b30;color:#fff;border:none;padding:12px;border-radius:8px;font-weight:700;cursor:pointer;}
-      /* Kontaktformulär */
-    .contact-wrap{max-width:860px;margin:0 auto}
-    form{background:#121215;border:1px solid #1d1d24;border-radius:16px;padding:20px}
-    label{display:block;font-weight:600;margin:12px 0 6px}
-    input, textarea{width:100%;background:#0f0f12;border:1px solid #23232b;color:#fff;border-radius:12px;padding:12px}
-    textarea{min-height:140px;resize:vertical}
-    .row{display:flex;gap:12px;flex-wrap:wrap}
-    .btn{display:inline-flex;align-items:center;gap:10px;background:#1a1a20;border:1px solid #26262e;border-radius:12px;padding:10px 14px;font-weight:700;color:#fff;cursor:pointer}
-    .btn.primary{border:none;background:linear-gradient(135deg,#ff3b30,#ff7a18)}
-    .help{font-size:12px;color:#98a1a9}
-    .alert{display:none;margin-top:12px;border-radius:12px;padding:12px}
-    .alert.ok{background:#0f2e17;border:1px solid #1c5b30;color:#d7ffd7}
-    .alert.err{background:#2e0f10;border:1px solid #5b1c23;color:#ffd7db}
+    /* Sections */
+    section{padding:72px 0;border-top:1px solid #161d2b}
+    h2{font-size:28px;margin:0 0 10px}
+    .muted{color:var(--muted);margin:0 0 28px}
+
+    /* Cards */
+    .grid{display:grid;gap:18px}
+    @media(min-width:800px){.grid{grid-template-columns:repeat(3,1fr)}}
+    .card{background:var(--card);border:1px solid #1a2233;border-radius:18px;padding:18px}
+    .card h3{margin:0 0 8px;font-size:18px}
+    .card p{margin:0;color:var(--muted)}
+
+    /* Contact form */
+    form{max-width:720px;margin:0 auto;background:var(--card);border:1px solid #1a2233;border-radius:18px;padding:22px}
+    .row{display:grid;gap:12px}
+    @media(min-width:720px){.row.two{grid-template-columns:1fr 1fr}}
+    label{font-weight:600;font-size:14px;margin-bottom:6px;display:block}
+    input, textarea{
+      width:100%; padding:12px 14px; border-radius:12px; border:1px solid #2a3347; background:#121a2a; color:var(--text);
+      outline:none;
+    }
+    input:focus, textarea:focus{border-color:#3a4763; box-shadow:0 0 0 4px var(--ring)}
+    textarea{min-height:140px; resize:vertical}
+    .help{color:var(--muted);font-size:12px;margin-top:6px}
+    .success, .error{display:none;margin-top:12px;padding:12px;border-radius:12px;font-weight:600}
+    .success{background:rgba(40,208,127,.1);border:1px solid #2f8f6a}
+    .error{background:rgba(255,107,61,.12);border:1px solid #8f4a35}
+
+    footer{padding:32px 0;color:#8d97a8;text-align:center}
   </style>
 </head>
 <body>
-  <nav class="nav">
-    <button class="menu-btn">Meny</button>
-  </nav>
 
-  <header class="hero">
-    <div class="logo">
-      <div class="logo-icon">🔥❤️📈🏋️</div>
-      <div class="logo-text">Patrik Hjalmarsson</div>
-    </div>
-    <div class="scroll-down">
-      <p>Behöver du eller ditt företag utbildning?</p>
-      <div class="arrow">⬇️</div>
+  <!-- Header (ingen logga – en ren meny) -->
+  <header>
+    <div class="container">
+      <nav>
+        <a href="#top" style="font-weight:800;">Hjalmarsson FFH</a>
+        <div class="nav-links">
+          <a href="#om">Om</a>
+          <a href="#tjanster">Tjänster</a>
+          <a href="#kontakt">Kontakt & bokning</a>
+        </div>
+      </nav>
     </div>
   </header>
 
+  <!-- HERO -->
+  <main id="top" class="hero container">
+    <div>
+      <!-- BYT emojiraden här om du vill -->
+      <div class="emojis" aria-hidden="true">🔥 🧯 🏋️‍♂️ ❤️‍🩹</div>
+      <h1>Behöver du eller ditt företag utbildning?</h1>
+      <p>Brandskydd, HLR och fysisk träning – vi skräddarsyr utbildningar som är praktiska, engagerande och lätta att boka.</p>
+      <div class="cta-row">
+        <a class="btn primary" href="#kontakt">Boka utbildning</a>
+        <a class="btn" href="#tjanster">Se våra tjänster</a>
+      </div>
+    </div>
+
+    <button class="scroll-down" aria-label="Skrolla ner" title="Skrolla ner">⬇️</button>
+  </main>
+
+  <!-- OM -->
+  <section id="om">
+    <div class="container">
+      <h2>Om oss</h2>
+      <p class="muted">Vi hjälper företag och privatpersoner med brandsäkerhet, HLR och träningsupplägg – alltid med fokus på tydlighet och hands-on-övning.</p>
+      <div class="grid">
+        <div class="card"><h3>Praktiskt upplägg</h3><p>Vi fokuserar på verkliga scenarion och tydliga rutiner.</p></div>
+        <div class="card"><h3>Certifierade utbildare</h3><p>Erfarna instruktörer inom brand, HLR och träning.</p></div>
+        <div class="card"><h3>På plats eller online</h3><p>Vi kommer till er – eller kör digitalt efter behov.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TJÄNSTER -->
   <section id="tjanster">
-    <h2>Utbildningar</h2>
-    <div class="grid">
-      <div class="card">
-        <h3>HLR vuxen + hjärtstartare</h3>
-        <p>Praktisk träning med dockor och hjärtstartare.</p>
-      </div>
-      <div class="card">
-        <h3>Brandskydd & släckövning</h3>
-        <p>Grundläggande brandkunskap och praktiska moment.</p>
-      </div>
-      <div class="card">
-        <h3>Utrymningsövning & plan</h3>
-        <p>Planering, genomförande och efteranalys av utrymningsövning.</p>
-      </div>
-      <div class="card">
-        <h3>Systematiskt brandskyddsarbete (SBA)</h3>
-        <p>Stöd i rutiner, egenkontroller, ansvar och dokumentation.</p>
-      </div>
-      <div class="card">
-        <h3>Brandronder & riskinventering</h3>
-        <p>Rond i lokaler med åtgärdslista och prioritering.</p>
-      </div>
-      <div class="card">
-        <h3>Sjöräddning & vattensäkerhet</h3>
-        <p>Säkerhet ombord och på kaj, livräddning i vatten.</p>
+    <div class="container">
+      <h2>Tjänster</h2>
+      <p class="muted">Välj en färdig kurs eller be oss skräddarsy efter era risker, lokaler och mål.</p>
+      <div class="grid">
+        <div class="card"><h3>Brandskyddsutbildning</h3><p>Brandförlopp, utrymning, släckövning och ansvar.</p></div>
+        <div class="card"><h3>HLR & Första hjälpen</h3><p>Vuxen-HLR, hjärtstartare (AED) och akuta lägen.</p></div>
+        <div class="card"><h3>Träning & hälsa</h3><p>Workshops, PT-upplägg och skadeförebyggande.</p></div>
       </div>
     </div>
   </section>
 
-  <section id="pt">
-    <h2>Personlig Träning</h2>
-    <div class="grid">
-      <div class="card">
-        <h3>Individuell PT</h3>
-        <p>Träning med fokus på styrka, kondition och säker teknik.</p>
-      </div>
-      <div class="card">
-        <h3>Företags-PT</h3>
-        <p>Skräddarsydda träningspass på arbetsplatsen för bättre hälsa och sammanhållning.</p>
-      </div>
-    </div>
-  </section>
-
+  <!-- KONTAKT & BOKNING (EN enda sektion) -->
   <section id="kontakt">
-    <h2>Kontakt & bokning</h2>
-    <form action="https://formspree.io/f/yourFormId" method="POST">
-      <input type="text" name="name" placeholder="Namn" required>
-      <input type="email" name="email" placeholder="Din e‑post" required>
-      <textarea name="message" rows="5" placeholder="Meddelande"></textarea>
-      <button type="submit">Skicka</button>
-    </form>
-  </section>
+    <div class="container">
+      <h2>Kontakt & bokning</h2>
+      <p class="muted">Fyll i formuläret så återkommer vi snarast. Du får en bekräftelse i din mejl.</p>
 
-  <!-- Kontakt -->
-  <section id="kontakt">
-    <h2>Kontakt & bokning</h2>
-    <div class="contact-wrap">
-      <!-- Formspree: byt YOUR_FORMSPREE_ID mot ditt riktiga formulär-ID. E‑postadressen syns inte på hemsidan. -->
-      <form id="contactForm" action="https://formspree.io/f/YOUR_FORMSPREE_ID" method="POST">
-        <div class="row">
-          <div style="flex:1">
+      <!-- Formspree-formulär -->
+      <form id="fs-form" action="https://formspree.io/f/mkgvjwky" method="POST">
+        <!-- Rek. fält -->
+        <div class="row two">
+          <div>
             <label for="name">Namn</label>
-            <input id="name" name="name" type="text" placeholder="Företag / Kontaktperson" required>
+            <input id="name" name="name" type="text" required autocomplete="name" />
           </div>
-          <div style="flex:1">
-            <label for="email">E‑post</label>
-            <input id="email" name="email" type="email" placeholder="namn@foretag.se" required>
-          </div>
-        </div>
-        <div class="row">
-          <div style="flex:1">
-            <label for="phone">Telefon</label>
-            <input id="phone" name="phone" type="tel" placeholder="070‑123 45 67">
-          </div>
-          <div style="flex:1">
-            <label for="company">Företag</label>
-            <input id="company" name="company" type="text" placeholder="Företagsnamn (valfritt)">
+          <div>
+            <label for="email">E-post</label>
+            <input id="email" name="email" type="email" required autocomplete="email" />
           </div>
         </div>
-        <label for="msg">Meddelande</label>
-        <textarea id="msg" name="message" placeholder="Antal deltagare, plats, önskad vecka..." required></textarea>
 
-        <!-- Formspree inställningar -->
-        <input type="hidden" name="_subject" value="Förfrågan från hemsidan">
-        <input type="text" name="_gotcha" style="display:none">
+        <div class="row two" style="margin-top:12px">
+          <div>
+            <label for="company">Företag (valfritt)</label>
+            <input id="company" name="company" type="text" autocomplete="organization" />
+          </div>
+          <div>
+            <label for="phone">Telefon (valfritt)</label>
+            <input id="phone" name="phone" type="tel" autocomplete="tel" />
+          </div>
+        </div>
 
-        <div class="help">Genom att skicka godkänner du att vi lagrar dina uppgifter för att svara på din förfrågan. Vi delar aldrig uppgifterna med tredje part.</div>
         <div class="row" style="margin-top:12px">
-          <button class="btn primary" type="submit">Skicka förfrågan</button>
-          <button class="btn" type="reset">Rensa</button>
+          <div>
+            <label for="message">Meddelande</label>
+            <textarea id="message" name="message" required placeholder="Vad behöver ni hjälp med?"></textarea>
+            <p class="help">Ex: önskat datum, antal deltagare, plats, typ av utbildning.</p>
+          </div>
         </div>
-        <div id="okMsg" class="alert ok">Tack! Ditt meddelande är skickat. Vi återkommer snarast.</div>
-        <div id="errMsg" class="alert err">Oj! Något gick fel. Prova igen eller maila oss.</div>
+
+        <!-- Dolda hjälp-fält -->
+        <input type="hidden" name="_subject" value="Ny förfrågan via hemsidan" />
+        <!-- Honeypot mot spam -->
+        <input type="text" name="_gotcha" style="display:none" tabindex="-1" autocomplete="off" />
+
+        <div style="display:flex;gap:12px;align-items:center;justify-content:flex-start;margin-top:10px">
+          <button class="btn primary" type="submit">Skicka</button>
+          <span id="sending" class="muted" style="display:none">Skickar…</span>
+        </div>
+
+        <div id="success" class="success">Tack! Ditt meddelande är skickat. Vi hör av oss snart.</div>
+        <div id="error" class="error">Oj! Något gick fel. Testa igen eller mejla oss direkt.</div>
       </form>
     </div>
   </section>
 
+  <footer>
+    <div class="container">
+      © <span id="year"></span> Hjalmarsson Fire, Fit & Health
+    </div>
+  </footer>
+
   <script>
-    document.querySelector('.scroll-down').addEventListener('click', ()=>{
-      document.getElementById('tjanster').scrollIntoView({behavior:'smooth'});
-    });
-    // Kontaktformulär – AJAX till Formspree (döljer e‑post på sidan)
-    const form = document.getElementById('contactForm');
-    const okMsg = document.getElementById('okMsg');
-    const errMsg = document.getElementById('errMsg');
-    if(form){
-      form.addEventListener('submit', async (e)=>{
+    // År i footern
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Smooth scroll för pilar/menylänkar
+    document.querySelectorAll('a[href^="#"]').forEach(a=>{
+      a.addEventListener('click', e=>{
+        const id = a.getAttribute('href');
+        const el = document.querySelector(id);
+        if(!el) return;
         e.preventDefault();
-        okMsg.style.display = 'none';
-        errMsg.style.display = 'none';
-        try{
-          const data = new FormData(form);
-          const res = await fetch(form.action, { method:'POST', body:data, headers:{'Accept':'application/json'} });
-          if(res.ok){
-            okMsg.style.display = 'block';
-            form.reset();
-          }else{
-            errMsg.style.display = 'block';
-          }
-        }catch(err){
-          errMsg.style.display = 'block';
-        }
+        el.scrollIntoView({behavior:'smooth', block:'start'});
+        history.pushState(null, '', id);
       });
-    }
+    });
+
+    // Hero-pil
+    document.querySelector('.scroll-down')?.addEventListener('click', ()=>{
+      document.getElementById('om')?.scrollIntoView({behavior:'smooth', block:'start'});
+    });
+
+    // Formspree – AJAX submit
+    const form = document.getElementById('fs-form');
+    const sending = document.getElementById('sending');
+    const ok = document.getElementById('success');
+    const err = document.getElementById('error');
+
+    form.addEventListener('submit', async (e)=>{
+      e.preventDefault();
+      sending.style.display='inline';
+      ok.style.display='none';
+      err.style.display='none';
+
+      const data = new FormData(form);
+      try{
+        const res = await fetch(form.action, {
+          method: 'POST',
+          body: data,
+          headers: { 'Accept': 'application/json' }
+        });
+        sending.style.display='none';
+        if(res.ok){
+          ok.style.display='block';
+          form.reset();
+        }else{
+          err.style.display='block';
+        }
+      }catch{
+        sending.style.display='none';
+        err.style.display='block';
+      }
+    });
   </script>
 </body>
 </html>
