@@ -115,6 +115,41 @@
     .card h3{margin:0 0 8px;font-size:18px}
     .card p{margin:0;color:var(--muted)}
 
+    /* Tjänste-accordion */
+    .service-card{cursor:pointer;transition:background .2s,border-color .2s;}
+    .service-card:hover{border-color:#2a3550;}
+    .service-header h3{margin:0;}
+    .service-toggle{
+      all:unset;
+      cursor:pointer;
+      font-size:18px;
+      font-weight:600;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      width:100%;
+    }
+    .service-toggle::after{
+      content:"+";
+      font-size:18px;
+      color:var(--muted);
+      margin-left:8px;
+      transition:transform .2s ease;
+    }
+    .service-card[aria-expanded="true"] .service-toggle::after{
+      content:"−";
+    }
+    .service-detail{
+      display:none;
+      margin-top:10px;
+      color:var(--muted);
+      font-size:14px;
+      line-height:1.6;
+    }
+    .service-detail p{margin:0 0 10px;}
+    .service-detail ul{padding-left:1.2rem;margin:0 0 10px;}
+    .service-detail li{margin-bottom:4px;}
+
     /* Form */
     form{max-width:720px;margin:0 auto;background:var(--card);border:1px solid #1a2233;border-radius:18px;padding:22px}
     .row{display:grid;gap:12px}
@@ -176,10 +211,15 @@
   <!-- HERO -->
   <main id="top" class="hero container">
     <div class="brand-block">
-      <!-- Byt filnamn här om din bild heter Logotype.jpeg -->
       <img src="logotype.jpg" alt="Företagslogotyp" class="logo-img" />
       <h1>Behöver du eller ditt företag utbildning?</h1>
-      <p>Brandskydd, HLR och fysisk träning – vi skräddarsyr utbildningar som är praktiska, engagerande och lätta att boka.</p>
+      <p>
+        Vi brinner för att skapa trygghet och styrka – både i kroppen och i vardagen.
+        Genom utbildningar i brandkunskap och HLR samt funktionell träning och personlig träning hjälper vi dig och din organisation att bli förberedda, starka och trygga.
+      </p>
+      <p style="margin-top:12px;">
+        Fire, Fit & Health – för livsviktig kunskap och hållbar styrka.
+      </p>
       <div class="cta-row">
         <a class="btn primary" href="#kontakt">Boka utbildning</a>
         <a class="btn" href="#tjanster">Se våra tjänster</a>
@@ -191,7 +231,14 @@
   <section id="om">
     <div class="container">
       <h2>Om oss</h2>
-      <p class="muted">Vi hjälper företag och privatpersoner med brandsäkerhet, HLR och träningsupplägg – alltid med fokus på tydlighet och hands-on-övning.</p>
+      <p class="muted">
+        Hjalmarsson Fire Fit and Health brinner för att skapa ett tryggare och starkare samhälle — både fysiskt och mentalt.
+        Vi erbjuder utbildningar inom brandkunskap, hjärt- och lungräddning (HLR) samt funktionell träning och personlig utveckling.<br><br>
+        Vi utgår från Furulund och utbildar i hela Skåne med omnejd.<br><br>
+        Med bakgrund inom räddningstjänst och fysisk träning kombinerar vi säkerhetstänk med rörelseglädje.
+        Hos oss handlar det om att vara förberedd när det gäller — oavsett om det är i vardagen, på arbetsplatsen eller i gymmet.<br><br>
+        Fire, Fit & Health – för styrka, trygghet och livsviktig kunskap.
+      </p>
       <div class="grid">
         <div class="card"><h3>Praktiskt upplägg</h3><p>Vi fokuserar på verkliga scenarion och tydliga rutiner.</p></div>
         <div class="card"><h3>Certifierade utbildare</h3><p>Erfarna instruktörer inom brand, HLR och träning.</p></div>
@@ -204,31 +251,184 @@
   <section id="tjanster">
     <div class="container">
       <h2>Tjänster</h2>
-      <p class="muted">Välj en färdig kurs eller be oss skräddarsy efter era risker, lokaler och mål.</p>
+      <p class="muted">Välj en färdig kurs eller be oss skräddarsy efter era risker, lokaler och mål. Klicka på en utbildning för att läsa mer.</p>
       <div class="grid">
-        <div class="card"><h3>Brandskyddsutbildning</h3><p>Brandförlopp, utrymning, släckövning och ansvar.</p></div>
-        <div class="card"><h3>HLR & Första hjälpen</h3><p>Vuxen-HLR, hjärtstartare (AED) och akuta lägen.</p></div>
-        <div class="card"><h3>Träning & hälsa</h3><p>Workshops, PT-upplägg och skadeförebyggande.</p></div>
+
+        <!-- Brandskyddsutbildning -->
+        <article class="card service-card" aria-expanded="false">
+          <div class="service-header">
+            <h3>
+              <button type="button" class="service-toggle">Brandskyddsutbildning</button>
+            </h3>
+          </div>
+          <p class="muted">Grundläggande brandskydd, utrymning och praktisk släckövning.</p>
+          <div class="service-detail">
+            <p>🔥 <strong>Grundläggande brandskydd – lär dig agera när det verkligen gäller!</strong></p>
+            <p>
+              En brand kan uppstå på bara några sekunder – vet du vad du ska göra?
+              Under vår utbildning Grundläggande brandskydd får du kunskap, självförtroende och praktisk erfarenhet
+              för att kunna agera snabbt och säkert om olyckan är framme.
+            </p>
+            <p>Du lär dig:</p>
+            <ul>
+              <li>✅ Hur bränder uppstår – och hur de kan förebyggas</li>
+              <li>✅ Hur du utrymmer på ett säkert sätt</li>
+              <li>✅ Hur du använder brandsläckare och brandfilt på rätt sätt</li>
+              <li>✅ Hur du behåller lugnet när stressen slår till</li>
+            </ul>
+            <p>
+              Vi varvar teori med praktiska övningar, där du får prova att släcka en riktig eld
+              under handledning av instruktör med mångårig bakgrund inom räddningstjänsten.
+            </p>
+            <p><strong>🔥 Hjalmarsson Fire Fit and Health – vi lär dig tänka snabbt, agera rätt och göra skillnad.</strong></p>
+          </div>
+        </article>
+
+        <!-- HLR & Första hjälpen -->
+        <article class="card service-card" aria-expanded="false">
+          <div class="service-header">
+            <h3>
+              <button type="button" class="service-toggle">HLR &amp; Första hjälpen</button>
+            </h3>
+          </div>
+          <p class="muted">Vuxen-HLR, hjärtstartare och första hjälpen vid akuta skador.</p>
+          <div class="service-detail">
+            <p>❤️ <strong>HLR &amp; Första hjälpen – gör skillnad när varje sekund räknas!</strong></p>
+            <p>
+              När olyckan händer finns det ingen tid att tveka.
+              Genom vår utbildning i HLR och första hjälpen lär du dig att agera snabbt, tryggt och effektivt – och faktiskt rädda liv.
+            </p>
+            <p>Du får kunskap och praktisk träning i:</p>
+            <ul>
+              <li>✅ Hjärt- och lungräddning (HLR) på vuxna</li>
+              <li>✅ Användning av hjärtstartare (AED)</li>
+              <li>✅ Avhjälpande luftvägshinder</li>
+              <li>✅ Lägga den drabbade i stabilt sidoläge</li>
+              <li>✅ Stoppa blödningar och hantera vanliga akuta skador</li>
+              <li>✅ Hur du behåller lugnet i pressade situationer</li>
+            </ul>
+            <p>
+              Utbildningen leds av instruktörer med mångårig erfarenhet från räddningstjänst och akutsjukvård,
+              vilket gör träningen verklighetsnära, engagerande och trygg.
+            </p>
+            <p>
+              Efter kursen går du därifrån med självförtroendet att våga agera – du vet hur du ska göra när sekunderna verkligen räknas.
+              Vi utbildar alltid enligt Svenska HLR-Rådets senaste riktlinjer.
+            </p>
+            <p><strong>❤️ Hjalmarsson Fire Fit and Health – för kunskap, trygghet och livsviktig kunskap!</strong></p>
+          </div>
+        </article>
+
+        <!-- Barn-HLR -->
+        <article class="card service-card" aria-expanded="false">
+          <div class="service-header">
+            <h3>
+              <button type="button" class="service-toggle">Barn-HLR</button>
+            </h3>
+          </div>
+          <p class="muted">Livsviktig kunskap för föräldrar, personal och alla som möter barn.</p>
+          <div class="service-detail">
+            <p>👶❤️ <strong>Barn-HLR – lär dig rädda liv när sekunderna räknas</strong></p>
+            <p>
+              Att ett barn sätter i halsen eller slutar andas är varje vuxens mardröm – men med rätt kunskap kan du göra all skillnad i världen.
+              I vår utbildning i Barn-HLR får du lära dig att agera snabbt, tryggt och effektivt när olyckan är framme.
+            </p>
+            <p>Du lär dig:</p>
+            <ul>
+              <li>✅ Hjärt- och lungräddning på spädbarn och barn</li>
+              <li>✅ Hur du hjälper ett barn som satt i halsen</li>
+              <li>✅ Hur du kontrollerar medvetande och andning</li>
+              <li>✅ När och hur du larmar 112</li>
+            </ul>
+            <p>
+              Utbildningen är praktisk, tydlig och verklighetsnära, ledd av instruktörer med erfarenhet från räddningstjänst och akutsjukvård.
+              Efter kursen har du den trygghet och handlingskraft som kan rädda liv – hemma, på jobbet eller i barnverksamhet.
+              Vi utbildar alltid enligt Svenska HLR-Rådets senaste riktlinjer.
+            </p>
+            <p><strong>❤️ Hjalmarsson Fire Fit and Health – för kunskap, trygghet och livsviktig kunskap!</strong></p>
+          </div>
+        </article>
+
+        <!-- Utrymningsövning -->
+        <article class="card service-card" aria-expanded="false">
+          <div class="service-header">
+            <h3>
+              <button type="button" class="service-toggle">Utrymningsövning</button>
+            </h3>
+          </div>
+          <p class="muted">Praktisk träning i utrymning, samling och säker kommunikation.</p>
+          <div class="service-detail">
+            <p>🚨 <strong>Utrymningsövning – trygghet genom verklig träning</strong></p>
+            <p>
+              När brandlarmet ljuder är det för sent att fundera på vad man ska göra.
+              En utrymningsövning ger din organisation chansen att träna på att agera snabbt, lugnt och korrekt – så att alla vet hur de ska ta sig ut i säkerhet.
+            </p>
+            <p>Under övningen får deltagarna:</p>
+            <ul>
+              <li>✅ Träna på att utrymma effektivt och följa rutiner</li>
+              <li>✅ Öva på samling och rapportering vid återsamlingsplats</li>
+              <li>✅ Förstå vikten av tydlig kommunikation och ledarskap under stress</li>
+              <li>✅ Få återkoppling och tips för att förbättra säkerheten</li>
+            </ul>
+            <p>
+              Vi genomför både planerade och överraskande övningar, anpassade efter verksamhetens lokaler och risker.
+              Efteråt får ni en återkoppling med konkreta förbättringsförslag för att stärka ert brandskyddsarbete.
+            </p>
+            <p>
+              Med erfarenhet från räddningstjänst och säkerhetsutbildning skapar vi övningar som känns verkliga – och som gör skillnad när det verkligen gäller.
+            </p>
+            <p><strong>🔥 Hjalmarsson Fire Fit and Health – vi tränar för trygghet, samarbete och säkerhet på riktigt.</strong></p>
+          </div>
+        </article>
+
+        <!-- Träning & hälsa -->
+        <article class="card service-card" aria-expanded="false">
+          <div class="service-header">
+            <h3>
+              <button type="button" class="service-toggle">Träning &amp; hälsa</button>
+            </h3>
+          </div>
+          <p class="muted">Gruppträning och personlig träning i vårt gym i Furulund.</p>
+          <div class="service-detail">
+            <p>💥 <strong>Gruppträning &amp; Personlig träning – styrka, gemenskap och resultat i Furulund</strong></p>
+            <p>
+              Välkommen till Hjalmarsson Fire Fit and Health – vårt eget träningsgym i Furulund
+              där vi kombinerar styrka, uthållighet och gemenskap i en unik och inspirerande träningsmiljö.
+            </p>
+            <p>Här erbjuder vi:</p>
+            <ul>
+              <li>🔥 Gruppträning med fokus på funktionell styrka, flås och teamwork</li>
+              <li>🔥 Personlig träning (PT) anpassad efter dina mål och din nivå</li>
+              <li>🔥 En motiverande miljö där alla pushar varandra och utvecklas tillsammans</li>
+            </ul>
+            <p>
+              Våra pass passar både nybörjare och erfarna – vi utmanar dig på din nivå, med fokus på teknik, säkerhet och träningsglädje.
+              Hos oss handlar det inte bara om att bli starkare – utan om att bli förberedd, trygg och redo för livets alla utmaningar.
+            </p>
+            <p><strong>💪 Hjalmarsson Fire Fit and Health – träning med puls, kraft och gemenskap i hjärtat av Lilla Ro!</strong></p>
+          </div>
+        </article>
+
       </div>
     </div>
   </section>
 
   <!-- CHATT -->
-<section id="chatt">
-  <div class="container">
-    <h2>Fråga oss direkt</h2>
-    <p class="muted">Ställ frågor om utbildningar, tider och priser – vi svarar här i chatten.</p>
+  <section id="chatt">
+    <div class="container">
+      <h2>Fråga oss direkt</h2>
+      <p class="muted">Ställ frågor om utbildningar, tider och priser – vi svarar här i chatten.</p>
 
-    <div class="card" style="padding:0;overflow:hidden;border-radius:18px">
-<div id="botjahl-chat"></div>
-<script src="https://westjahlconsulting.github.io/ai-chatbot-frontend/embed.js"
-  data-api="https://chatbot-api-jahl-bdeqfbb5amfjfabe.westeurope-01.azurewebsites.net"
-  data-customer="c4907b4"
-  data-theme="light"
-  data-height="520"></script>
+      <div class="card" style="padding:0;overflow:hidden;border-radius:18px">
+        <div id="botjahl-chat"></div>
+        <script src="https://westjahlconsulting.github.io/ai-chatbot-frontend/embed.js"
+          data-api="https://chatbot-api-jahl-bdeqfbb5amfjfabe.westeurope-01.azurewebsites.net"
+          data-customer="c4907b4"
+          data-theme="light"
+          data-height="520"></script>
+      </div>
     </div>
-  </div>
-</section>
+  </section>
 
   <!-- KONTAKT -->
   <section id="kontakt">
@@ -351,6 +551,34 @@
         sending.style.display='none';
         err.style.display='block';
       }
+    });
+
+    // Tjänstekort – toggla detaljer
+    const serviceCards = document.querySelectorAll('.service-card');
+    serviceCards.forEach(card => {
+      const btn = card.querySelector('.service-toggle');
+      const detail = card.querySelector('.service-detail');
+      if(!btn || !detail) return;
+
+      const toggle = () => {
+        const expanded = card.getAttribute('aria-expanded') === 'true';
+        card.setAttribute('aria-expanded', String(!expanded));
+        detail.style.display = expanded ? 'none' : 'block';
+      };
+
+      btn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        toggle();
+      });
+
+      card.addEventListener('click', (e) => {
+        if(e.target.closest('.service-toggle')) return;
+        toggle();
+      });
+
+      // init
+      card.setAttribute('aria-expanded', 'false');
+      detail.style.display = 'none';
     });
   </script>
 </body>
