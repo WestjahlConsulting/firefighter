@@ -419,14 +419,16 @@
       <h2>Fråga oss direkt</h2>
       <p class="muted">Ställ frågor om utbildningar, tider och priser – vi svarar här i chatten.</p>
 
-      <div class="card" style="padding:0;overflow:hidden;border-radius:18px">
-        <div id="botjahl-chat"></div>
-        <script src="https://westjahlconsulting.github.io/ai-chatbot-frontend/embed.js"
-          data-api="https://chatbot-api-jahl-bdeqfbb5amfjfabe.westeurope-01.azurewebsites.net"
-          data-customer="c4907b4"
-          data-theme="light"
-          data-height="520"></script>
-      </div>
+      <!-- BotJahl – AI-chattbot -->
+<script>
+  window.BotJahlConfig = {
+    customerId: "76044b7",
+    apiBase: "https://botjahl-api-dev.azurewebsites.net",
+    theme: "auto" // "light" / "dark" / "auto"
+  };
+</script>
+<script src="https://westjahlconsulting.github.io/ai-chatbot-frontend/embed.js" async></script>
+<!-- /BotJahl -->
     </div>
   </section>
 
