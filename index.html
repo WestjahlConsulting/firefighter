@@ -181,7 +181,7 @@
         <nav class="nav-links" aria-label="Huvudmeny">
           <a href="#om">Om</a>
           <a href="#tjanster">Tjänster</a>
-          <a href="#chatt">Chatt</a> 
+          <a href="#chatt">Chatt</a>
           <a href="#kontakt">Kontakt & bokning</a>
         </nav>
 
@@ -211,7 +211,7 @@
   <!-- HERO -->
   <main id="top" class="hero container">
     <div class="brand-block">
-      <img src="logotype.jpg" alt="Företagslogotyp" class="logo-img" />
+      <img src="logo.jpg" alt="Företagslogotyp" class="logo-img" />
       <h1>Behöver du eller ditt företag utbildning?</h1>
       <p>
         Vi brinner för att skapa trygghet och styrka – både i kroppen och i vardagen.
@@ -413,25 +413,6 @@
     </div>
   </section>
 
-  <!-- CHATT -->
-  <section id="chatt">
-    <div class="container">
-      <h2>Fråga oss direkt</h2>
-      <p class="muted">Ställ frågor om utbildningar, tider och priser – vi svarar här i chatten.</p>
-
-      <!-- BotJahl – AI-chattbot -->
-<script>
-  window.BotJahlConfig = {
-    customerId: "76044b7",
-    apiBase: "https://botjahl-api-dev.azurewebsites.net",
-    theme: "auto" // "light" / "dark" / "auto"
-  };
-</script>
-<script src="https://westjahlconsulting.github.io/ai-chatbot-frontend/embed.js" async></script>
-<!-- /BotJahl -->
-    </div>
-  </section>
-
   <!-- KONTAKT -->
   <section id="kontakt">
     <div class="container">
@@ -480,6 +461,30 @@
         <div id="success" class="success">Tack! Ditt meddelande är skickat. Vi hör av oss snart.</div>
         <div id="error" class="error">Oj! Något gick fel. Testa igen eller mejla oss direkt.</div>
       </form>
+    </div>
+  </section>
+
+  <!-- CHATT – ligger längst ner -->
+  <section id="chatt">
+    <div class="container">
+      <h2>Fråga oss direkt</h2>
+      <p class="muted">Ställ frågor om utbildningar, tider och priser – vi svarar här i chatten.</p>
+
+      <!-- Knapp som öppnar BotJahl-chatten -->
+      <div style="margin:20px 0 8px">
+        <button type="button" class="btn primary" id="open-chat">Öppna chatt</button>
+      </div>
+
+      <!-- BotJahl – AI-chattbot -->
+      <script>
+        window.BotJahlConfig = {
+          customerId: "76044b7",
+          apiBase: "https://botjahl-api-dev.azurewebsites.net",
+          theme: "auto" // "light" / "dark" / "auto"
+        };
+      </script>
+      <script src="https://westjahlconsulting.github.io/ai-chatbot-frontend/embed.js" async></script>
+      <!-- /BotJahl -->
     </div>
   </section>
 
@@ -582,6 +587,30 @@
       card.setAttribute('aria-expanded', 'false');
       detail.style.display = 'none';
     });
+
+    // Öppna BotJahl-chatten från knappen i "Chatt"-sektionen
+    const chatButton = document.getElementById('open-chat');
+
+    function openBotJahlChat(){
+      try{
+        // Om embed.js exponerar ett API
+        if (window.BotJahl && typeof window.BotJahl.open === 'function') {
+          window.BotJahl.open();
+          return;
+        }
+        // Fallback – klicka på samma launcher som i högra hörnet
+        const launcher = document.querySelector(
+          '[data-botjahl-launcher], .botjahl-launcher, #botjahl-launcher, button[aria-label*="BotJahl"], button[aria-label*="chatt"]'
+        );
+        if (launcher) launcher.click();
+      }catch(e){
+        console.warn('Kunde inte öppna chatten automatiskt', e);
+      }
+    }
+
+    if (chatButton) {
+      chatButton.addEventListener('click', openBotJahlChat);
+    }
   </script>
 </body>
 </html>
