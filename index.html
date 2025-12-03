@@ -177,20 +177,17 @@
       flex-direction:column;
       align-items:center;
     }
-    .logo-img{
-      width:clamp(120px, 26vw, 220px);
-      height:auto;
-      max-height:160px;
-      margin-bottom:20px;
-      border-radius:50%;
-      overflow:hidden;
-      /* border:2px solid rgba(159,179,200,.45); */
-      border: none;
+    .logo-img {
+      width: clamp(150px, 30vw, 260px);
+      height: auto;
+      margin-bottom: 20px;
+      object-fit: contain;
+      border-radius: 0;
       padding: 0;
-      /* padding:4px; */
-      object-fit:cover;
-      box-shadow:0 12px 30px rgba(0,0,0,.7);
+      filter: drop-shadow(0 10px 30px rgba(0, 0, 0, .65));
+      overflow: visible;
     }
+
 
     .hero h1{
       font-size:clamp(24px,5vw,44px);
